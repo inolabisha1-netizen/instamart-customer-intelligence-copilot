@@ -1,0 +1,24 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.env
+data/instamart.db
+state/*.json
+
+.vscode/
+# Local backup files
+*_backup.py
+*_backup_*.txt
+*.bak
+
+# Generated runtime outputs
+outputs/
+
+# Local test cache
+.pytest_cache/
+.venv_test/
+# Reproducible generated datasets
+data/raw/
+data/clean/
+data/policies/
