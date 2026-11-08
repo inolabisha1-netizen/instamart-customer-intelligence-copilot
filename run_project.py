@@ -13,7 +13,11 @@ def main():
     print("Segment profile:\n",profile.to_string(index=False)); print("PCA explained variance:",pca)
     print("Lapse model summary:",build_lapse_model())
     print("\n=== PART C: TRIAGE ===")
-    triage,summary=run_pipeline(prompt=FEW,token_budget=100000)
+    triage, summary = run_pipeline(
+        prompt=FEW,
+        token_budget=100000,
+        output_path="outputs/triage_results.csv"
+    )
     print(summary); print(triage.head().to_string(index=False))
     print("\n=== PART D: POLICY RAG ===")
     rag=PolicyRAG(); print("chunks:",len(rag.chunks)); print(evaluate(rag).to_string(index=False))
