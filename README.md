@@ -25,7 +25,14 @@ python generate_data.py
 
 # 5. Run Parts A–D in sequence, including the agent evaluation
 python run_project.py
+# 6. Independently reproduce the seven Part A SQL analyses
+python -m src.sql_analysis
+
+# 7. Independently reproduce the Part A pandas and EDA analyses
+python -m src.exploratory_analysis
 ```
+
+
 
 The generator's final line should be `generated: customers=1200 products=40 orders_raw=13084 tickets=164`. The pipeline should print `ALL CHECKPOINTS PASSED` for Part A and `RESULT: 7/7 scenarios passed` for the Part D agent evaluation. The source modules may also be run individually where supported; the single command above is the primary reproduction path.
 
@@ -38,7 +45,8 @@ Expected output paths after execution:
 | C | `outputs/triage_results.csv`, `outputs/triage_budget_demo.csv` |
 | D | `outputs/agent_runs.jsonl`, `outputs/refund_ledger.jsonl`, checkpoint files in `state/` |
 
-**Reproducibility status:** The complete `python run_project.py` pipeline and two consecutive `python -m src.evaluate_agent` runs were reported successful in the working environment. A fresh-clone/clean-virtual-environment run has **not yet been independently verified**; verify it before submission. The seven-scenario evaluator uses isolated test state. The permanent refund ledger is persistent, so direct manual refunds may correctly return `refund already issued` on a later attempt.
+**Reproducibility status:** The complete project pipeline was successfully executed in the development environment and independently tested from a fresh GitHub clone using a newly created virtual environment. Dependencies were installed from `requirements.txt`, and the project was executed using the documented reproduction steps. Part A validation printed `ALL CHECKPOINTS PASSED`, and the Part D agent evaluation passed all seven scenarios. Two consecutive standalone agent evaluation runs were also successful in the development environment. The seven-scenario evaluator uses isolated test state. The permanent refund ledger is persistent, so direct manual refunds may correctly return `refund already issued` on a later attempt.
+
 
 ## Part A 
 The pipeline standardizes city/gender, treats invalid ages as missing, resolves duplicate orders by keeping the latest timestamp, imputes missing amounts from catalogue price, sets negative delivery times to missing and imputes only completed-order delivery durations by product category. The cleaned data is checked against the reference checkpoints in the capstone brief.
